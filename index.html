@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYUMBANI FRESH BLENDS</title>
+<meta name="description" content="Premium Kenyan artisanal spice blends inspired by heritage, purity, and modern luxury.">
+
+<!-- SERIF GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#000000;
+  --gold:#D4AF37;
+  --terracotta:#8E3E26; /* Deep Terracotta */
+  --white:#f5f5f5;
+  --glass:rgba(255,255,255,0.06);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  /* Global Serif Font Change */
+  font-family: 'Playfair Display', serif;
+  overflow-x:hidden;
+}
+
+.bg{
+  position:fixed;
+  inset:0;
+  background:
+  linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.9)),
+  url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1800&q=80');
+  background-size:cover;
+  background-position:center;
+  z-index:-1;
+}
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:999;
+  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.4);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 7%;
+}
+
+.logo{
+  display:flex;
+  flex-direction:column;
+}
+
+/* Branding color changed to Deep Terracotta */
+.logo-main{
+  font-family:'Cinzel', serif;
+  font-size:1.8rem;
+  color:var(--terracotta);
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.logo-sub{
+  letter-spacing:8px;
+  font-size:0.6rem;
+  text-transform:uppercase;
+  color: #888;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+}
+
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover{
+  color:var(--terracotta);
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:140px 8% 80px;
+}
+
+.hero-content{
+  max-width:900px;
+}
+
+.hero h1{
+  font-family:'Cinzel', serif;
+  font-size:5rem;
+  color:var(--terracotta);
+  margin-bottom:25px;
+}
+
+.hero p{
+  line-height:2;
+  color:#ddd;
+  font-size:1.3rem;
+  margin-bottom:40px;
+  font-style: italic;
+}
+
+.btn{
+  display:inline-block;
+  padding:16px 34px;
+  border-radius:0; /* Sharp edges for a more classic serif look */
+  background:var(--terracotta);
+  color:white;
+  font-weight:700;
+  text-decoration:none;
+  transition:0.4s;
+  border: 1px solid var(--terracotta);
+}
+
+.btn:hover{
+  transform:translateY(-5px);
+  background:transparent;
+  color:var(--terracotta);
+}
+
+.section{
+  padding:110px 8%;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.section-title h2{
+  font-family:'Cinzel', serif;
+  color:var(--terracotta);
+  font-size:3rem;
+  margin-bottom:20px;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px;
+  align-items:center;
+}
+
+.about-card{
+  background:var(--glass);
+  padding:40px;
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+}
+
+.about-card h3 {
+    color: var(--terracotta);
+    font-family: 'Cinzel', serif;
+    margin-bottom: 15px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:35px;
+}
+
+.spice-card{
+  background:rgba(10,10,10,0.8);
+  padding:35px;
+  border: 1px solid rgba(142, 62, 38, 0.2);
+  transition:0.4s;
+  text-align: center;
+}
+
+.spice-card:hover{
+  transform:translateY(-10px);
+  border-color: var(--terracotta);
+}
+
+/* GLOWING NAME PRESERVED WITH TERRACOTTA UNDERTONE */
+.spice-name-glow {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--white);
+  margin-bottom: 25px;
+  display: block;
+  text-shadow: 0 0 8px rgba(142, 62, 38, 0.4), 0 0 15px rgba(255,255,255,0.2);
+  letter-spacing: 1px;
+}
+
+.price-tiers {
+  margin: 15px 0;
+}
+
+.tier {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.weight-label { color: #888; font-size: 0.85rem; font-style: italic; }
+.price-value { color: var(--terracotta); font-weight: 700; }
+
+.order-btn{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--terracotta);
+  background:transparent;
+  color:var(--terracotta);
+  cursor:pointer;
+  font-weight:700;
+  margin-top: 15px;
+  transition: 0.3s;
+  font-family: 'Playfair Display', serif;
+}
+
+.order-btn:hover {
+  background: var(--terracotta);
+  color: white;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.feature{
+  background:rgba(255, 255, 255, 0.02);
+  padding:35px;
+  border-top: 2px solid var(--terracotta);
+}
+
+.feature h4{
+  color:var(--terracotta);
+  margin-bottom:15px;
+  font-family: 'Cinzel', serif;
+}
+
+footer{
+  padding:40px;
+  text-align:center;
+  background:black;
+  color:#555;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+/* LOADER UPDATED TO DEEP TERRACOTTA */
+.loader{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  z-index:5000;
+  animation:fadeOut 1.5s forwards;
+  animation-delay:2s;
+}
+
+.loader-text {
+  font-family: 'Cinzel', serif;
+  color: var(--terracotta);
+  text-align: center;
+}
+
+.loader-main { font-size: 2.5rem; letter-spacing: 5px; animation: textPulse 2s infinite; }
+.loader-sub { font-size: 0.8rem; letter-spacing: 12px; color: #555; }
+
+@keyframes textPulse {
+  0%, 100% { opacity: 0.6; text-shadow: 0 0 5px rgba(142,62,38,0.2); }
+  50% { opacity: 1; text-shadow: 0 0 20px rgba(142,62,38,0.7); }
+}
+
+@keyframes fadeOut{
+  to{ opacity:0; visibility:hidden; }
+}
+
+@media(max-width:768px){
+  .hero h1{ font-size:3rem; }
+  .nav-links{ display:none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="loader">
+  <div class="loader-text">
+    <div class="loader-main">NYUMBANI</div>
+    <div class="loader-sub">FRESH BLENDS</div>
+  </div>
+</div>
+
+<div class="bg"></div>
+
+<header>
+<div class="nav">
+  <div class="logo">
+    <span class="logo-main">NYUMBANI</span>
+    <span class="logo-sub">FRESH BLENDS</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="#story">Our Story</a>
+    <a href="#products">Collection</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+  <h1>Artisanal Kenyan Purity</h1>
+  <p>Radically fresh spices crafted for the discerning modern kitchen.</p>
+  <a href="#products" class="btn">Explore Price List</a>
+</div>
+</section>
+
+<section class="section" id="story">
+<div class="section-title">
+  <h2>The Heritage</h2>
+</div>
+<div class="about-grid">
+  <div class="about-card">
+    <p>It all starts with the aroma.</p><br>
+    <p>That unmistakable scent of roasting cumin and cinnamon that drifts from a kitchen window, signaling that home is nearby.</p><br>
+    <p>In Swahili, <strong>Nyumbani</strong> means home—not just a place, but a feeling of safety, warmth, and the best flavors life has to offer.</p><br>
+    <p>Nyumbani Fresh Blends was born to bring that home-cooked purity back to the modern table.</p>
+  </div>
+  <div class="about-card">
+    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80" style="width:100%; border-radius:2px; margin-bottom:20px;" alt="Handcrafted Spices">
+    <h3>Purely Kenyan.</h3>
+    <p>We are a boutique Kenyan spice house dedicated to the art of the perfect blend—combining premium aesthetics with radical purity.</p>
+  </div>
+</div>
+</section>
+
+<section class="section" id="products">
+<div class="section-title">
+  <h2>The Price List</h2>
+  <p>Select your weight. Hand-packed and delivered fresh from Nairobi.</p>
+</div>
+<div class="products" id="productGrid"></div>
+</section>
+
+<section class="section">
+<div class="features">
+  <div class="feature"><h4>Small Batch</h4><p>We grind in tiny quantities to ensure maximum aroma and flavor.</p></div>
+  <div class="feature"><h4>Zero Filler</h4><p>No flour. No anti-caking agents. No artificial dyes. Just 100% spice.</p></div>
+  <div class="feature"><h4>Ethical Sourcing</h4><p>Sourced directly from local farmers and coastal spice markets.</p></div>
+</div>
+</section>
+
+<section class="section contact" id="contact" style="text-align:center;">
+<div class="section-title"><h2>Inquiries</h2></div>
+<p>📍 Nairobi, Kenya</p>
+<p>📞 +254 710 791 159</p><br>
+<a href="https://wa.me/254710791159" class="btn">Order via WhatsApp</a>
+</section>
+
+<footer>© 2026 NYUMBANI FRESH BLENDS • NAIROBI, KENYA</footer>
+
+<script>
+const spiceData = [
+  {name: 'Ginger', p: [200, 439, 878, 1755]},
+  {name: 'Black Pepper Whole', p: [258, 645, 1290, 2580]},
+  {name: 'Black Pepper Powder', p: [265, 664, 1328, 2655]},
+  {name: 'Cardamom', p: [566, 1414, 2828, 5655]},
+  {name: 'Cinnamon Whole', p: [138, 345, 690, 1380]},
+  {name: 'Cinnamon Sticks', p: [516, 645, 1290, 2580]},
+  {name: 'Cumin Powder', p: [200, 439, 878, 1755]},
+  {name: 'Coriander Powder', p: [102, 255, 510, 1020]},
+  {name: 'Tumeric (Local)', p: [86, 214, 428, 855]},
+  {name: 'Garlic', p: [131, 327, 653, 1305]},
+  {name: 'Cloves Whole', p: [221, 552, 1103, 2205]},
+  {name: 'Hibiscus Petals', p: [138, 345, 690, 1380]},
+  {name: 'Pilau Masala', p: [200, 439, 878, 1755]},
+  {name: 'Chai Masala', p: [145, 362, 723, 1455]},
+  {name: 'Paprika', p: [138, 345, 690, 1380]},
+  {name: 'Chia Seeds', p: [131, 327, 653, 1305]}
+];
+
+const productGrid = document.getElementById('productGrid');
+
+spiceData.forEach(spice => {
+  productGrid.innerHTML += `
+    <div class="spice-card">
+      <span class="spice-name-glow">${spice.name}</span>
+      <div class="price-tiers">
+        <div class="tier"><span class="weight-label">100g</span><span class="price-value">KES ${spice.p[0]}</span></div>
+        <div class="tier"><span class="weight-label">250g</span><span class="price-value">KES ${spice.p[1]}</span></div>
+        <div class="tier"><span class="weight-label">500g</span><span class="price-value">KES ${spice.p[2]}</span></div>
+        <div class="tier"><span class="weight-label">1kg</span><span class="price-value">KES ${spice.p[3]}</span></div>
+      </div>
+      <button class="order-btn" onclick="window.location.href='https://wa.me/254710791159'">Inquire on WhatsApp</button>
+    </div>
+  `;
+});
+</script>
+</body>
+</html>
