@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYUMBANI FRESH BLENDS</title>
+<meta name="description" content="Premium Kenyan artisanal spice blends inspired by heritage, purity, and modern luxury.">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght=0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#000000;
+  --gold:#D4AF37; /* Turmeric Gold Radiance */
+  --terracotta:#8E3E26; /* Deep Terracotta */
+  --glass:rgba(212,175,55,0.04);
+  --glass-border:rgba(212,175,55,0.15);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--gold); 
+  font-family: 'Playfair Display', serif;
+  overflow-x:hidden;
+}
+
+/* BASE BACKGROUND WITH PERSISTENT GRADIENT STYLING */
+.bg{
+  position:fixed;
+  inset:0;
+  background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95));
+  z-index:-2;
+}
+
+.ambience-layer {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.18;
+  transition: background-image 0.6s ease-in-out, opacity 0.6s;
+}
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:998;
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+  background:rgba(0,0,0,0.8);
+  border-bottom:1px solid var(--glass-border);
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 7%;
+}
+
+.logo{
+  display:flex;
+  flex-direction:column;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logo-main{
+  font-family:'Cinzel', serif;
+  font-size:1.8rem;
+  color:var(--terracotta);
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.logo-sub{
+  letter-spacing:8px;
+  font-size:0.6rem;
+  text-transform:uppercase;
+  color: #888;
+}
+
+/* --- NEW SIDE MENU ARCHITECTURE --- */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 2px;
+  background: var(--terracotta);
+  transition: all 0.3s ease-in-out;
+  transform-origin: left;
+}
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg); }
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(0,0,0,0.98), rgba(20,20,20,1));
+  border-left: 1px solid var(--glass-border);
+  z-index: 1000;
+  transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 100px 40px;
+  gap: 30px;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+}
+
+.side-menu.active {
+  right: 0;
+}
+
+.side-menu a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-family: 'Cinzel', serif;
+  transition: 0.3s;
+  cursor: pointer;
+  letter-spacing: 1px;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 5px;
+  width: fit-content;
+}
+
+.side-menu a:hover, .side-menu a.active-link {
+  color: var(--terracotta);
+  border-color: var(--terracotta);
+  transform: translateX(10px);
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+/* ---------------------------------- */
+
+.page-view {
+  display: none;
+  animation: fadeInView 0.5s ease-in-out forwards;
+}
+
+.page-view.active-view {
+  display: block;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: scale(0.99) translateY(5px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.section{
+  padding:140px 8% 80px;
+  min-height: 100vh;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.section-title h2{
+  font-family:'Cinzel', serif;
+  color:var(--terracotta);
+  font-size:3rem;
+  margin-bottom:20px;
+}
+
+.section-title p{
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* PAGE 1 - HOMEPAGE GALLERY */
+.hero-editorial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0 60px;
+}
+
+.hero-text-block h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 3.5rem;
+  color: var(--terracotta);
+  line-height: 1.2;
+  margin-bottom: 25px;
+}
+
+.hero-text-block p {
+  line-height: 1.8;
+  font-size: 1.15rem;
+  margin-bottom: 20px;
+  color: var(--gold);
+}
+
+.hero-text-block .welcome-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: var(--terracotta);
+  margin-top: 20px;
+  display: block;
+  letter-spacing: 2px;
+}
+
+.fancy-food-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  aspect-ratio: 4/5;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  filter: brightness(85%) contrast(105%);
+}
+
+.gallery-card:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 80%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.gallery-overlay span {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* PAGE 2 - PRODUCTS CARD SCHEMATIC */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:35px;
+}
+
+.spice-card{
+  background:rgba(10,10,10,0.9);
+  padding:35px;
+  border: 1px solid rgba(142, 62, 38, 0.2);
+  transition:0.4s;
+  text-align: center;
+}
+
+.spice-card:hover{
+  transform:translateY(-10px);
+  border-color: var(--terracotta);
+}
+
+.spice-name-glow {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--gold); 
+  margin-bottom: 25px;
+  display: block;
+  text-shadow: 0 0 8px rgba(142, 62, 38, 0.4), 0 0 15px rgba(212,175,55,0.2);
+  letter-spacing: 1px;
+}
+
+.price-tiers {
+  margin: 15px 0;
+}
+
+.tier {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(212,175,55,0.08);
+}
+
+.weight-label { color: #888; font-size: 0.85rem; font-style: italic; }
+.price-value { color: var(--terracotta); font-weight: 700; }
+
+.order-btn{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--terracotta);
+  background:transparent;
+  color:var(--terracotta);
+  cursor:pointer;
+  font-weight:700;
+  margin-top: 15px;
+  transition: 0.3s;
+  font-family: 'Playfair Display', serif;
+}
+
+.order-btn:hover {
+  background: var(--terracotta);
+  color: var(--gold);
+}
+
+.btn{
+  display:inline-block;
+  padding:16px 34px;
+  border-radius:0; 
+  background:var(--terracotta);
+  color:var(--gold);
+  font-weight:700;
+  text-decoration:none;
+  transition:0.4s;
+  border: 1px solid var(--terracotta);
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.btn:hover{
+  transform:translateY(-5px);
+  background:transparent;
+  color:var(--terracotta);
+}
+
+/* PAGE 3 - BLOG COMPONENT STYLES */
+.blog-layout { max-width: 850px; margin: 0 auto; }
+.blog-intro-box { margin-bottom: 50px; font-size: 1.2rem; line-height: 1.8; }
+.blog-item { margin-bottom: 45px; background: rgba(0,0,0,0.5); padding: 35px; border: 1px solid var(--glass-border); }
+.blog-item h3 { font-family: 'Cinzel', serif; color: var(--terracotta); font-size: 1.6rem; margin-bottom: 15px; }
+.blog-item ul { list-style: none; margin-bottom: 15px; }
+.blog-item ul li { margin-bottom: 10px; line-height: 1.7; }
+.blog-closing { text-align: center; margin-top: 60px; padding: 40px; background: rgba(142, 62, 38, 0.05); border: 1px solid rgba(142, 62, 38, 0.2); }
+.blog-closing h4 { font-family: 'Cinzel', serif; font-size: 1.6rem; margin-bottom: 15px; }
+
+/* PAGE 4 - SOCIAL CONTACT PLATFORM CARDS */
+.contact-container { max-width: 700px; margin: 0 auto; text-align: center; }
+.contact-list { margin: 40px 0; display: flex; flex-direction: column; gap: 20px; }
+.contact-anchor-card {
+  background: rgba(10,10,10,0.8);
+  padding: 22px;
+  border: 1px solid var(--glass-border);
+  font-size: 1.2rem;
+  color: var(--gold);
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+}
+.contact-anchor-card:hover {
+  border-color: var(--terracotta);
+  background: rgba(142, 62, 38, 0.1);
+  transform: scale(1.02);
+}
+.contact-anchor-card strong { font-family: 'Cinzel', serif; color: var(--terracotta); margin-right: 10px; }
+
+/* PAGE 5 - ABOUT STRUCTURAL STATEMENTS */
+.about-container { max-width: 900px; margin: 0 auto; }
+.about-purity-title { font-family: 'Cinzel', serif; color: var(--terracotta); font-size: 2.2rem; text-align: center; letter-spacing: 3px; margin-bottom: 40px; }
+.about-intro-text p { font-size: 1.2rem; line-height: 1.8; margin-bottom: 25px; }
+.about-bullets ul { list-style: none; }
+.about-bullets li { background: rgba(255,255,255,0.01); padding: 25px; margin-bottom: 20px; border-left: 3px solid var(--terracotta); line-height: 1.7; border-top: 1px solid var(--glass-border); border-right: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+.about-bullets li strong { font-family: 'Cinzel', serif; color: var(--terracotta); display: block; font-size: 1.1rem; margin-bottom: 5px; }
+.about-commitment { font-size: 1.20rem; line-height: 1.8; text-align: center; margin: 40px 0; padding: 30px; border-top: 1px dashed var(--glass-border); border-bottom: 1px dashed var(--glass-border); }
+.statements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin: 50px 0; }
+.statement-card { background: rgba(10,10,10,0.9); padding: 35px; border: 1px solid rgba(142, 62, 38, 0.3); }
+.statement-card h3 { font-family: 'Cinzel', serif; color: var(--terracotta); margin-bottom: 15px; font-size: 1.4rem; }
+.statement-card p { font-style: italic; line-height: 1.7; }
+.core-values-section h3 { font-family: 'Cinzel', serif; text-align: center; color: var(--terracotta); font-size: 2.2rem; margin-bottom: 40px; }
+.values-stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+.value-node { background: rgba(255, 255, 255, 0.01); padding: 30px; border-top: 2px solid var(--terracotta); border-bottom: 1px solid var(--glass-border); }
+.value-node h4 { color: var(--terracotta); margin-bottom: 15px; font-family: 'Cinzel', serif; font-size: 1.1rem; }
+.value-node p { font-size: 0.95rem; line-height: 1.6; }
+
+/* FEEDBACK & COMMENT SECTION ARCHITECTURE */
+.feedback-workspace {
+  max-width: 950px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+.comment-form-panel {
+  background: rgba(10,10,10,0.8);
+  padding: 40px;
+  border: 1px solid var(--glass-border);
+}
+.comment-form-panel h3 {
+  font-family: 'Cinzel', serif;
+  color: var(--terracotta);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+.input-row {
+  margin-bottom: 20px;
+}
+.input-row label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+.input-row input, .input-row textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  padding: 12px;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+}
+.input-row input:focus, .input-row textarea:focus {
+  outline: none;
+  border-color: var(--terracotta);
+}
+.live-reviews-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+.live-reviews-feed::-webkit-scrollbar { width: 4px; }
+.live-reviews-feed::-webkit-scrollbar-thumb { background: var(--terracotta); }
+.review-bubble {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  border-left: 2px solid var(--gold);
+  animation: fadeInView 0.5s ease-in-out forwards;
+}
+.review-bubble .author-mark {
+  font-family: 'Cinzel', serif;
+  color: var(--terracotta);
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  display: block;
+}
+.review-bubble p {
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* FAQ PAGE ACCORDIONS */
+.faq-box { max-width: 800px; margin: 0 auto; }
+.faq-card { background: rgba(10,10,10,0.8); padding: 35px; border: 1px solid var(--glass-border); }
+.faq-card h3 { font-family: 'Cinzel', serif; color: var(--terracotta); font-size: 1.3rem; margin-bottom: 20px; }
+.faq-sub-links { margin-top: 15px; display: flex; flex-direction: column; gap: 10px; }
+.faq-sub-links a { color: var(--gold); text-decoration: none; }
+.faq-sub-links a:hover { color: var(--terracotta); }
+
+footer{
+  padding:40px;
+  text-align:center;
+  background:black;
+  color:#555;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  border-top: 1px solid var(--glass-border);
+}
+
+/* LOADER DESIGN */
+.loader{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  z-index:5000;
+  animation:fadeOut 1.5s forwards;
+  animation-delay:1.5s;
+}
+.loader-text { font-family: 'Cinzel', serif; color: var(--terracotta); text-align: center; }
+.loader-main { font-size: 2.5rem; letter-spacing: 5px; animation: textPulse 2s infinite; }
+.loader-sub { font-size: 0.8rem; letter-spacing: 12px; color: #555; }
+
+@keyframes textPulse {
+  0%, 100% { opacity: 0.6; text-shadow: 0 0 5px rgba(142,62,38,0.2); }
+  50% { opacity: 1; text-shadow: 0 0 20px rgba(142,62,38,0.7); }
+}
+@keyframes fadeOut{ to{ opacity:0; visibility:hidden; } }
+
+/* ADAPTIVE RESOLUTIONS */
+@media(max-width:900px){
+  .section {
+    padding: 120px 4% 60px;
+    min-height: auto;
+  }
+  .section-title { margin-bottom: 35px; }
+  .section-title h2 { font-size: 2.2rem; }
+  .hero-editorial, .feedback-workspace { 
+    grid-template-columns: 1fr; 
+    gap: 30px;
+  }
+  .hero-text-block h1 { font-size: 2.3rem; }
+  .hero-text-block p { font-size: 1.05rem; }
+  .fancy-food-gallery { gap: 12px; }
+}
+
+@media(max-width:480px) {
+  .logo-main { font-size: 1.5rem; }
+  .section-title h2 { font-size: 1.8rem; }
+  .spice-card { padding: 25px 15px; }
+  .side-menu { width: 260px; padding: 100px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="loader">
+  <div class="loader-text">
+    <div class="loader-main">NYUMBANI</div>
+    <div class="loader-sub">FRESH BLENDS</div>
+  </div>
+</div>
+
+<div class="bg"></div>
+<!-- THE AMBIENCE LAYER: Target for the background swap -->
+<div id="ambience-canvas" class="ambience-layer"></div>
+
+<header>
+<div class="nav">
+  <div class="logo" onclick="navigateToPage('home-page')">
+    <span class="logo-main">NYUMBANI</span>
+    <span class="logo-sub">FRESH BLENDS</span>
+  </div>
+
+  <!-- Animated Hamburger Menu -->
+  <div class="hamburger" onclick="toggleMenu()" id="menuBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+</header>
+
+<!-- Stylish Side Menu -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<div class="side-menu" id="sideMenu">
+    <a onclick="navigateToPage('home-page')" class="active-link" id="lnk-home-page">Home</a>
+    <a onclick="navigateToPage('products-page')" id="lnk-products-page">Collection</a>
+    <a onclick="navigateToPage('blog-page')" id="lnk-blog-page">The Big 5 Blog</a>
+    <a onclick="navigateToPage('about-page')" id="lnk-about-page">Our Story</a>
+    <a onclick="navigateToPage('feedback-page')" id="lnk-feedback-page">Reviews</a>
+    <a onclick="navigateToPage('contact-page')" id="lnk-contact-page">Contact</a>
+    <a onclick="navigateToPage('faq-page')" id="lnk-faq-page">FAQ</a>
+</div>
+
+<div id="home-page" class="page-view active-view">
+  <section class="section" style="padding-top:40px;">
+    <div class="hero-editorial">
+      <div class="hero-text-block">
+        <h1>Artisanal Kenyan Purity</h1>
+        <p><strong>Summary:</strong> Born from an obsession to eliminate synthetic fillers, additives, and dyes from the modern table, Nyumbani Fresh Blends packages the authentic, unadulterated spirit and deep home heritage of Kenya for discerning kitchens globally.</p>
+        <p>It all starts with the aroma. That unmistakable scent of roasting cumin and cinnamon that drifts from a kitchen window, signaling that "home" is nearby. In Swahili, Nyumbani means home—not just a place, but a feeling of safety, warmth, and the best flavors life has to offer.</p>
+        <p>We stripped away the additives and kept the heart. We chose the gold of our turmeric, the deep red of our chilies, and the earthy tones of our soil to guide us.</p>
+        <p>Call or Whatsapp us now for all your orders and enquiries.</p>
+        <span class="welcome-badge">Karibu Nyumbani!</span><br><br>
+        <a onclick="navigateToPage('products-page')" class="btn">Explore Price List</a>
+      </div>
+      
+      <div class="fancy-food-gallery">
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Gourmet Pilau Dish cooked with fresh spices">
+          <div class="gallery-overlay"><span>Infused Rice Heritage</span></div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=600&q=80" alt="Premium Roasted Nyama Choma rubbed with Garlic Powder">
+          <div class="gallery-overlay"><span>Perfect Golden Crusts</span></div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Warm aromatic broth seasoned with pure turmeric">
+          <div class="gallery-overlay"><span>Vibrant Earthy Elixirs</span></div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Gourmet artisanal salad dressing featuring black pepper pop">
+          <div class="gallery-overlay"><span>Modern Fine Dining</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="products-page" class="page-view">
+  <section class="section">
+    <div class="section-title">
+      <h2>The Price List</h2>
+      <p>Select your weight. Hand-packed and delivered fresh from Nairobi.</p>
+    </div>
+    <div class="products" id="productGrid"></div>
+  </section>
+</div>
+
+<div id="blog-page" class="page-view">
+  <section class="section">
+    <div class="section-title">
+      <h2>Culinary Journal</h2>
+      <p>Mastering the foundations of authentic home cooking.</p>
+    </div>
+    <div class="blog-layout">
+      <div class="blog-intro-box">
+        <h3 style="font-family:'Cinzel', serif; color:var(--terracotta); margin-bottom:15px; font-size:1.8rem;">Master the Kenyan Kitchen: The Big 5 Essential Spices</h3>
+        <p>In a world of complicated recipes and overflowing spice cabinets, we believe in a simpler truth: You don’t need fifty different jars to cook like a pro. You just need the right five.</p><br>
+        <p>At Nyumbani Fresh Blends, we’ve stripped away the noise to focus on the "Big 5"—the foundational spices that define the soul of Kenyan cooking. Whether you’re simmering a Sunday Pilau or a quick weekday Githeri, these pure, unadulterated essentials are all you need to transform a meal from basic to brilliant.</p>
+      </div>
+
+      <div class="blog-item">
+        <h3>1. Ground Ginger (Tangawizi)</h3>
+        <ul>
+          <li><strong>The Vibe:</strong> Warm, zingy, and energizing.</li>
+          <li><strong>The Nyumbani Difference:</strong> Most commercial ginger is fibrous and pale. Ours is deep, potent, and ground from the finest sun-dried roots.</li>
+        </ul>
+        <p><strong>Pro Tip:</strong> Don’t just save ginger for tea. Add a half-teaspoon to your meat marinades; the natural enzymes help tenderize the beef while adding a signature "kick."</p>
+      </div>
+
+      <div class="blog-item">
+        <h3>2. Garlic Powder (Kitunguu Saumu)</h3>
+        <ul>
+          <li><strong>The Vibe:</strong> Savory, pungent, and indispensable.</li>
+          <li><strong>The Nyumbani Difference:</strong> No cornstarch fillers here. Just 100% pure garlic that smells like a fresh harvest the moment you open the seal.</li>
+        </ul>
+        <p><strong>Pro Tip:</strong> For the perfect Nyama Choma rub at home, mix our garlic powder with a little salt and vegetable oil. It creates a crust that seals in the juices better than fresh cloves, which often burn over high heat.</p>
+      </div>
+
+      <div class="blog-item">
+        <h3>3. Pure Turmeric (Manjano)</h3>
+        <ul>
+          <li><strong>The Vibe:</strong> Earthy, vibrant, and healing.</li>
+          <li><strong>The Nyumbani Difference:</strong> You’ll notice the color immediately. It’s a deep, rich orange-gold—a sign of high curcumin content and zero artificial dyes.</li>
+        </ul>
+        <p><strong>Pro Tip:</strong> Turmeric is fat-soluble. To get the most "glow" and health benefits, always sauté it in your onions and oil for 30 seconds before adding your liquids.</p>
+      </div>
+
+      <div class="blog-item">
+        <h3>4. Black Pepper (Pilipili Manga)</h3>
+        <ul>
+          <li><strong>The Vibe:</strong> Sharp, bold, and sophisticated.</li>
+          <li><strong>The Nyumbani Difference:</strong> We use high-velocity grinding to ensure the essential oils stay trapped in the powder, giving you that immediate aromatic "pop."</li>
+        </ul>
+        <p><strong>Pro Tip:</strong> Add your black pepper at the end of cooking. High heat can make pepper bitter; a final dusting preserves its complex, woody aroma.</p>
+      </div>
+
+      <div class="blog-item">
+        <h3>5. Ground Cinnamon (Mdalasini)</h3>
+        <ul>
+          <li><strong>The Vibe:</strong> Sweet, woody, and comforting.</li>
+          <li><strong>The Nyumbani Difference:</strong> While many store-bought options use low-grade bark that tastes like sawdust, our Cinnamon is selected for its high oil content, giving it a naturally sweet aroma without any added sugar.</li>
+        </ul>
+        <p><strong>Pro Tip:</strong> Cinnamon isn't just for baking or tea! Add a small pinch to your savory tomato-based stews or minji (peas). It acts as a "secret ingredient" that cuts through the acidity of the tomatoes and adds a rich, professional depth that your guests won't be able to quite put their finger on.</p>
+      </div>
+
+      <div class="blog-closing">
+        <h4>Ready to simplify your kitchen?</h4>
+        <p style="margin-bottom: 25px;">Our Vitality Kit features all five of these essentials in our signature premium packaging. No fillers, no fakes—just the pure taste of home.</p>
+        <button class="btn" onclick="window.location.href='https://wa.me/254710791159'">[Shop the Big 5 Starter Pack Now]</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="feedback-page" class="page-view">
+  <section class="section">
+    <div class="section-title">
+      <h2>Guest Feedback</h2>
+      <p>Share your thoughts on our service, purity, and culinary performance.</p>
+    </div>
+    <div class="feedback-workspace">
+      
+      <div class="comment-form-panel">
+        <h3>Leave a Comment</h3>
+        <form id="feedbackForm" onsubmit="handleFeedbackSubmit(event)">
+          <div class="input-row">
+            <label>Your Name</label>
+            <input type="text" id="fbName" required placeholder="Enter your name">
+          </div>
+          <div class="input-row">
+            <label>Your Review / Experience</label>
+            <textarea id="fbText" rows="5" required placeholder="Write your comments about our spice purity or delivery service..."></textarea>
+          </div>
+          <button type="submit" class="btn" style="width:100%;">Post Review</button>
+        </form>
+      </div>
+
+      <div>
+        <h3 style="font-family:'Cinzel', serif; color:var(--terracotta); margin-bottom:20px; font-size:1.5rem;">Verified Comments</h3>
+        <div class="live-reviews-feed" id="reviewsContainer">
+          <div class="review-bubble">
+            <span class="author-mark">- Wanjiku M.</span>
+            <p>"The turmeric is absolutely amazing. You can instantly tell it's pure by how rich the color is. Definitely replacing my supermarket brands!"</p>
+          </div>
+          <div class="review-bubble">
+            <span class="author-mark">- David K.</span>
+            <p>"Quick delivery and the packaging is very premium. The Pilau masala made a huge difference in my cooking this weekend."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div id="contact-page" class="page-view">
+  <section class="section">
+    <div class="section-title">
+      <h2>Inquiries</h2>
+      <p>Nyumbani Fresh Blends Spices is an online store. Reach us on the following social media platforms;</p>
+    </div>
+    <div class="contact-container">
+      <div class="contact-list">
+        <a href="https://wa.me/254710791159" class="contact-anchor-card" target="_blank">
+          <strong>Whatsapp –</strong> (+254) 710791159
+        </a>
+        <a href="https://www.instagram.com/nyumbani_freshblends?igsh=YzljYTk10Dg3Zg" class="contact-anchor-card" target="_blank">
+          <strong>Instagram -</strong> Nyumbani Fresh Blends Spices
+        </a>
+        <a href="https://www.facebook.com/share/1Cov8rcJH3/" class="contact-anchor-card" target="_blank">
+          <strong>Facebook -</strong> Nyumbani Fresh Blends-Spices
+        </a>
+        <a href="https://www.tiktok.com/@nyumbani_freshblends" class="contact-anchor-card" target="_blank">
+          <strong>Tiktok -</strong> Nyumbani Fresh Blends-Spice
+        </a>
+      </div>
+      <a href="https://wa.me/254710791159" class="btn">Order via WhatsApp</a>
+    </div>
+  </section>
+</div>
+
+<div id="about-page" class="page-view">
+  <section class="section">
+    <div class="section-title">
+      <h2>Our Heritage</h2>
+    </div>
+    <div class="about-container">
+      <div class="about-purity-title">Pure. Fresh. Flavor.</div>
+      
+      <div class="about-intro-text">
+        <p>At Nyumbani Fresh Blends Spices, we believe that cooking is an act of love, and love shouldn't be "diluted." Based in the heart of Kenya, we are a boutique spice house dedicated to the art of the perfect blend.</p>
+        <p>We saw a gap between the dusty, mass-produced spices in the market and the high-quality, vibrant ingredients our soil is capable of producing. We decided to bridge that gap by marrying premium aesthetics with radical purity.</p>
+      </div>
+
+      <div class="about-bullets">
+        <h3 style="font-family:'Cinzel', serif; color:var(--terracotta); margin-bottom:20px;">What Sets Us Apart:</h3>
+        <ul>
+          <li>
+            <strong>The No-Filler Promise:</strong> We don't believe in "adding volume" with flour or cornstarch. When you open a packet of Nyumbani, you are getting 100% spice, 100% of the time.
+          </li>
+          <li>
+            <strong>Locally Rooted:</strong> From the bustling markets of Nairobi to the spice farms of the coast, we source with an eye for quality and a heart for local empowerment.
+          </li>
+          <li>
+            <strong>Designed for the Modern Home:</strong> We know your kitchen is your sanctuary. Our minimalist, matte-finish packaging is designed to look as good on your countertop as the flavors taste in your pot.
+          </li>
+        </ul>
+      </div>
+
+      <div class="about-commitment">
+        Our Commitment Whether you’re a seasoned chef or a beginner experimenting with your first pilau, we provide the consistency and quality you can trust. We are deeply committed to ensuring that every meal you cook with us feels like a celebration of home. Karibu Nyumbani.
+      </div>
+
+      <div class="statements-grid">
+        <div class="statement-card">
+          <h3>Vision Statement</h3>
+          <p>"To be the heart of every Kenyan kitchen, redefining the spice experience through purity, elegance, and the celebration of local heritage."</p>
+        </div>
+        <div class="statement-card">
+          <h3>Mission Statement</h3>
+          <p>“Our mission is to deliver the highest quality, 100% pure spice blends that honor traditional flavors while meeting modern standards of safety and design.”</p>
+        </div>
+      </div>
+
+      <div class="core-values-section">
+        <h3>Core Values</h3>
+        <div class="values-stack">
+          <div class="value-node">
+            <h4>1. Radical Purity</h4>
+            <p>We believe what goes into your pot should be nothing but the best, thus, our strict no-filler policy, ensuring our spices are free from artificial dyes, additives, or bulkers.</p>
+          </div>
+          <div class="value-node">
+            <h4>2. Aesthetic Excellence</h4>
+            <p>Quality should be visible. Our minimalist, premium branding reflects the sophistication of the modern Kenyan home and the natural beauty of the spices themselves.</p>
+          </div>
+          <div class="value-node">
+            <h4>3. Cultural Authenticity</h4>
+            <p>Nyumbani means home and  we are committed to preserving the soul of Kenyan cuisine, sourcing locally whenever possible and crafting blends that resonate with the authentic tastes of our counties and beyond.</p>
+          </div>
+          <div class="value-node">
+            <h4>4. Integrity & Transparency</h4>
+            <p>Trust is earned through the seal on every packet. From our airtight ziplock pouches to the hygienically handling and processing of the spices, we operate with full transparency so that our customers never worry about the quality of their food.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div id="faq-page" class="page-view">
+  <section class="section">
+    <div class="section-title">
+      <h2>FAQ</h2>
+    </div>
+    <div class="faq-box">
+      <div class="faq-card">
+        <h3>Where is your store’s physical location?</h3>
+        <p>At the moment, Nyumbani Fresh Blends Spices exists as an online store. Reach us through;</p>
+        <div class="faq-sub-links">
+          <div><strong>Whatsapp No.</strong> 0710791159</div>
+          <div><a href="https://www.instagram.com/nyumbani_freshblends?igsh=YzljYTk10Dg3Zg" target="_blank" style="color:var(--gold);text-decoration:none;"><strong>Instagram -</strong> Nyumbani Fresh Blends Spices</a></div>
+          <div><a href="https://www.facebook.com/share/1Cov8rcJH3/" target="_blank" style="color:var(--gold);text-decoration:none;"><strong>Facebook -</strong> Nyumbani Fresh Blends-Spices</a></div>
+          <div><a href="https://www.tiktok.com/@nyumbani_freshblends" target="_blank" style="color:var(--gold);text-decoration:none;"><strong>Tiktok -</strong> Nyumbani Fresh Blends-Spices</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>© 2026 NYUMBANI FRESH BLENDS • NAIROBI, KENYA</footer>
+
+<script>
+// --- EXPANDED SPICE DATA ---
+const spiceData = [
+  {name: 'Ginger', p: [200, 460, 920, 1830]},
+  {name: 'Black Pepper Whole', p: [275, 700, 1400, 2800]},
+  {name: 'Black Pepper Powder', p: [290, 720, 1440, 2880]},
+  {name: 'Cardamom', p: [545, 1360, 2720, 5430]},
+  {name: 'Cinnamon Whole', p: [180, 430, 850, 1700]},
+  {name: 'Cinnamon', p: [200, 460, 920, 1830]},
+  {name: 'Cumin Powder', p: [200, 495, 990, 1980]},
+  {name: 'Cumin Seed', p: [180, 430, 860, 1720]},
+  {name: 'Coriander Powder', p: [110, 270, 540, 1080]},
+  {name: 'Coriander Seeds', p: [100, 250, 500, 1000]},
+  {name: 'Fenugreek Seeds', p: [130, 320, 640, 1280]},
+  {name: 'Fenugreek Powder', p: [150, 350, 700, 1400]},
+  {name: 'Indian Turmeric', p: [170, 420, 840, 1680]},
+  {name: 'Local Turmeric', p: [100, 240, 470, 930]},
+  {name: 'Garlic', p: [170, 420, 840, 1680]},
+  {name: 'Cloves Powder', p: [240, 590, 1180, 2360]},
+  {name: 'Cloves Whole', p: [230, 560, 1120, 2240]},
+  {name: 'Hibiscus Powder', p: [345, 690, 1380, 2760]},
+  {name: 'Royco', p: [150, 350, 700, 1400]},
+  {name: 'Beef Masala', p: [170, 420, 840, 1680]},
+  {name: 'Chicken Masala', p: [170, 420, 840, 1680]},
+  {name: 'Pilau Masala', p: [220, 540, 1080, 2160]},
+  {name: 'Garam Masala', p: [170, 420, 840, 1680]},
+  {name: 'Paprika', p: [170, 410, 820, 1640]},
+  {name: 'Chili Pepper', p: [160, 370, 740, 1480]},
+  {name: 'Cayenne', p: [150, 330, 660, 1320]},
+  {name: 'Flax Seeds', p: [140, 300, 600, 1200]},
+  {name: 'Chia Seeds', p: [150, 350, 700, 1400]},
+  {name: 'Baobab Powder', p: [110, 265, 530, 1060]},
+  {name: 'Chai Masala', p: [170, 420, 840, 1680]},
+  {name: 'Green Tea', p: [170, 420, 840, 1680]},
+  {name: 'Curry Powder', p: [170, 420, 840, 1680]}
+];
+
+// Product Injection
+const productGrid = document.getElementById('productGrid');
+spiceData.forEach(spice => {
+  productGrid.innerHTML += `
+    <div class="spice-card">
+      <span class="spice-name-glow">${spice.name}</span>
+      <div class="price-tiers">
+        <div class="tier"><span class="weight-label">100g</span><span class="price-value">Ksh ${spice.p[0]}</span></div>
+        <div class="tier"><span class="weight-label">250g</span><span class="price-value">Ksh ${spice.p[1]}</span></div>
+        <div class="tier"><span class="weight-label">500g</span><span class="price-value">Ksh ${spice.p[2]}</span></div>
+        <div class="tier"><span class="weight-label">1kg</span><span class="price-value">Ksh ${spice.p[3]}</span></div>
+      </div>
+      <button class="order-btn" onclick="window.open('https://wa.me/254710791159?text=Hello, I would like to order ${spice.name}', '_blank')">Order via WhatsApp</button>
+    </div>
+  `;
+});
+
+// --- DYNAMIC BACKGROUND MAPPING ---
+const pageBackgrounds = {
+  'home-page': 'url("https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1920&q=80")',
+  'products-page': 'url("https://images.unsplash.com/photo-1596422846543-73c78cf845e2?auto=format&fit=crop&w=1920&q=80")', // Verified Spice Image (Star Anise/Cinnamon)
+  'blog-page': 'url("https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=1920&q=80")', // Verified Spice Image (Aesthetic Scattered Spices)
+  'about-page': 'url("https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1920&q=80")',
+  'feedback-page': 'url("https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1920&q=80")',
+  'contact-page': 'url("https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&w=1920&q=80")',
+  'faq-page': 'url("https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?auto=format&fit=crop&w=1920&q=80")'
+};
+
+// --- NAVIGATION & BACKGROUND SWAP LOGIC ---
+function navigateToPage(pageId) {
+  // 1. Hide all pages
+  document.querySelectorAll('.page-view').forEach(page => {
+    page.classList.remove('active-view');
+  });
+  
+  // 2. Show requested page
+  document.getElementById(pageId).classList.add('active-view');
+  
+  // 3. Swap the background image on the Ambience Layer
+  const ambienceLayer = document.getElementById('ambience-canvas');
+  ambienceLayer.style.backgroundImage = pageBackgrounds[pageId];
+
+  // 4. Update the active link styles in the menu
+  document.querySelectorAll('.side-menu a').forEach(link => {
+    link.classList.remove('active-link');
+  });
+  const activeLink = document.getElementById('lnk-' + pageId);
+  if (activeLink) activeLink.classList.add('active-link');
+
+  // 5. Close mobile menu if it's open
+  const sideMenu = document.getElementById('sideMenu');
+  if (sideMenu.classList.contains('active')) {
+    toggleMenu();
+  }
+  
+  // 6. Scroll back to top
+  window.scrollTo(0, 0);
+}
+
+// --- HAMBURGER MENU LOGIC ---
+function toggleMenu() {
+  const sideMenu = document.getElementById('sideMenu');
+  const menuBtn = document.getElementById('menuBtn');
+  const overlay = document.getElementById('menuOverlay');
+  
+  sideMenu.classList.toggle('active');
+  menuBtn.classList.toggle('active');
+  overlay.classList.toggle('active');
+}
+
+// --- FEEDBACK FORM LOGIC WITH LOCAL STORAGE ---
+function loadSavedReviews() {
+  const container = document.getElementById('reviewsContainer');
+  const savedReviews = JSON.parse(localStorage.getItem('nyumbaniReviews')) || [];
+  
+  // Loop through memory and prepend past reviews
+  savedReviews.forEach(review => {
+    const newReview = document.createElement('div');
+    newReview.className = 'review-bubble';
+    newReview.innerHTML = `
+      <span class="author-mark">- ${review.name}</span>
+      <p>"${review.text}"</p>
+    `;
+    container.prepend(newReview);
+  });
+}
+
+function handleFeedbackSubmit(event) {
+  event.preventDefault();
+  
+  const name = document.getElementById('fbName').value;
+  const text = document.getElementById('fbText').value;
+  const container = document.getElementById('reviewsContainer');
+  
+  // Create new review element
+  const newReview = document.createElement('div');
+  newReview.className = 'review-bubble';
+  newReview.innerHTML = `
+    <span class="author-mark">- ${name}</span>
+    <p>"${text}"</p>
+  `;
+  
+  // Prepend to top of list on screen
+  container.prepend(newReview);
+  
+  // Save to browser LocalStorage
+  const savedReviews = JSON.parse(localStorage.getItem('nyumbaniReviews')) || [];
+  savedReviews.push({ name: name, text: text });
+  localStorage.setItem('nyumbaniReviews', JSON.stringify(savedReviews));
+  
+  // Reset form
+  document.getElementById('feedbackForm').reset();
+  alert("Thank you for your review!");
+}
+
+// Initialize the first background and load saved reviews on page load
+window.onload = () => {
+  document.getElementById('ambience-canvas').style.backgroundImage = pageBackgrounds['home-page'];
+  loadSavedReviews();
+};
+
+</script>
+</body>
+</html>
